@@ -1,0 +1,62 @@
+version: "3"
+
+networks:
+  hadoop-spark-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+
+services:
+  namenode:
+    image: hadoop-spark:latest
+    container_name: namenode
+    hostname: namenode
+    command: /usr/local/hadoop/bin/hdfs namenode
+    ports:
+      - "9000:9000"
+      - "9870:9870"
+      - "8088:8088"
+      - "8080:8080"
+    volumes:
+      - ./data/namenode:/usr/local/hadoop/hadoop_data/hdfs/namenode
+    environment:
+      - CONTAINER_NAMES=namenode datanode1 datanode2
+    networks:
+      hadoop-spark-net:
+        ipv4_address: 172.28.0.2
+    extra_hosts:
+        - "datanode1:172.28.0.3"
+        - "datanode2:172.28.0.4"
+
+  datanode1:
+    image: hadoop-spark:latest
+    container_name: datanode1
+    hostname: datanode1
+    command: /usr/local/hadoop/bin/hdfs datanode
+    volumes:
+      - ./data/datanode1:/usr/local/hadoop/hadoop_data/hdfs/datanode
+    environment:
+      - CONTAINER_NAMES=namenode datanode1 datanode2
+    networks:
+      hadoop-spark-net:
+        ipv4_address: 172.28.0.3
+    extra_hosts:
+        - "namenode:172.28.0.2"
+        - "datanode2:172.28.0.4"
+
+  datanode2:
+    image: hadoop-spark:latest
+    container_name: datanode2
+    hostname: datanode2
+    command: /usr/local/hadoop/bin/hdfs datanode
+    volumes:
+      - ./data/datanode2:/usr/local/hadoop/hadoop_data/hdfs/datanode
+    environment:
+      - CONTAINER_NAMES=namenode datanode1 datanode2
+    networks:
+      hadoop-spark-net:
+        ipv4_address: 172.28.0.4
+    extra_hosts:
+        - "namenode:172.28.0.2"
+        - "datanode1:172.28.0.3"
