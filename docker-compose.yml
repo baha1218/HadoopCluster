@@ -21,14 +21,14 @@ services:
     volumes:
       - ./data/namenode:/usr/local/hadoop/hadoop_data/hdfs/namenode
     environment:
-      - CONTAINER_NAMES=namenode datanode1 datanode2
+      - CONTAINER_NAMES=namenode datanode1 datanode2 datanode3
     networks:
       hadoop-spark-net:
         ipv4_address: 172.28.0.2
     extra_hosts:
         - "datanode1:172.28.0.3"
         - "datanode2:172.28.0.4"
-
+        - "datanode3:172.28.0.5"
   datanode1:
     image: hadoop-spark:latest
     container_name: datanode1
@@ -37,14 +37,14 @@ services:
     volumes:
       - ./data/datanode1:/usr/local/hadoop/hadoop_data/hdfs/datanode
     environment:
-      - CONTAINER_NAMES=namenode datanode1 datanode2
+      - CONTAINER_NAMES=namenode datanode1 datanode2 datanode3
     networks:
       hadoop-spark-net:
         ipv4_address: 172.28.0.3
     extra_hosts:
         - "namenode:172.28.0.2"
         - "datanode2:172.28.0.4"
-
+        - "datanode3:172.28.0.5"
   datanode2:
     image: hadoop-spark:latest
     container_name: datanode2
@@ -53,10 +53,27 @@ services:
     volumes:
       - ./data/datanode2:/usr/local/hadoop/hadoop_data/hdfs/datanode
     environment:
-      - CONTAINER_NAMES=namenode datanode1 datanode2
+      - CONTAINER_NAMES=namenode datanode1 datanode2 datanode3
     networks:
       hadoop-spark-net:
         ipv4_address: 172.28.0.4
     extra_hosts:
         - "namenode:172.28.0.2"
         - "datanode1:172.28.0.3"
+        - "datanode3:172.28.0.5"
+  datanode3:
+    image: hadoop-spark:latest
+    container_name: datanode3
+    hostname: datanode3
+    command: /usr/local/hadoop/bin/hdfs datanode
+    volumes:
+      - ./data/datanode3:/usr/local/hadoop/hadoop_data/hdfs/datanode
+    environment:
+      - CONTAINER_NAMES=namenode datanode1 datanode2 datanode3
+    networks:
+      hadoop-spark-net:
+        ipv4_address: 172.28.0.5
+    extra_hosts:
+        - "namenode:172.28.0.2"
+        - "datanode1:172.28.0.3"
+        - "datanode2:172.28.0.4"
