@@ -1,13 +1,47 @@
-# hadoop-spark2023
+
+# Déploiement d'un cluster Hadoop
+
+Déploiement d'un cluster Hadoop sur docker.
+
+Ce cluster est composé d'un namenode et de trois nodemaster.
+
+
+## Prérequis
+
+- Git
+
+- Docker Engine
+
+- Docker Compose
+
+
+## 🛠 Configuration
 
 
 
-## Getting started
+Cloner le repository
 
-- construire l'image docker :
+```bash
+  git clone https://github.com/baha1218/HadoopCluster.git
+```
 
-        docker build -t hadoop-spark . 
+Rendez-vous dans le dossier HadoopCluster/ pour builder votre image
 
-- lancer le cluster :
+```bash
+  cd HadoopCluster/
+  docker build -t hadoop-spark .
+```
 
-        docker compose -f "docker-compose.yml" up -d --build
+Vous pouvez maintenant déployer vos 3 conteneurs grace au fichier `docker-compose.yml`
+
+```bash
+  docker compose -f "docker-compose.yml" up -d --build
+```
+
+Pour finir, supprimez à la ligne 15 `-format` et relancez vos conteneurs
+
+```bash
+  docker compose -f "docker-compose.yml" up -d --build
+```
+Vérifiez le bon fonctionnement du cluster sur votre navigateur en tapant l'ip de votre machine `http://<ip>:9870` ou votre localhost `http://127.0.0.1:9870` sur le port 9870.
+
