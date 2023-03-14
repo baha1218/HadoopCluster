@@ -28,20 +28,20 @@ git clone https://github.com/baha1218/HadoopCluster.git
 Rendez-vous dans le dossier HadoopCluster/ pour builder votre image
 
 ```bash
-  cd HadoopCluster/
-  docker build -t hadoop-spark .
+cd HadoopCluster/
+docker build -t hadoop-spark .
 ```
 
 Vous pouvez maintenant déployer vos 3 conteneurs grace au fichier `docker-compose.yml`
 
 ```bash
-  docker compose -f "docker-compose.yml" up -d --build
+docker compose -f "docker-compose.yml" up -d --build
 ```
 
 Pour finir, supprimez à la ligne 15 `-format` et relancez vos conteneurs
 
 ```bash
-  docker compose -f "docker-compose.yml" up -d --build
+docker compose -f "docker-compose.yml" up -d --build
 ```
 Vérifiez le bon fonctionnement du cluster sur votre navigateur en tapant l'ip de votre machine `http://<ip>:9870` ou votre localhost `http://127.0.0.1:9870` sur le port 9870.
 
