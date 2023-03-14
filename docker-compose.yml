@@ -12,7 +12,7 @@ services:
     image: hadoop-spark:latest
     container_name: namenode
     hostname: namenode
-    command: /usr/local/hadoop/bin/hdfs namenode
+    command: /usr/local/hadoop/bin/hdfs namenode -format
     ports:
       - "9000:9000"
       - "9870:9870"
