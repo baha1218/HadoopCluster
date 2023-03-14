@@ -3,7 +3,7 @@
 
 Déploiement d'un cluster Hadoop sur docker.
 
-Ce cluster est composé d'un namenode et de trois nodemaster.
+Ce cluster est composé d'un namenode et de trois datanode.
 
 
 ## Prérequis
