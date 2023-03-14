@@ -22,7 +22,7 @@ Ce cluster est composé d'un namenode et de trois nodemaster.
 Cloner le repository
 
 ```bash
-  git clone https://github.com/baha1218/HadoopCluster.git
+git clone https://github.com/baha1218/HadoopCluster.git
 ```
 
 Rendez-vous dans le dossier HadoopCluster/ pour builder votre image
