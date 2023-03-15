@@ -18,6 +18,7 @@ services:
       - "9870:9870"
       - "8088:8088"
       - "8080:8080"
+      - "7077:7077"
     volumes:
       - ./data/namenode:/usr/local/hadoop/hadoop_data/hdfs/namenode
     environment:
