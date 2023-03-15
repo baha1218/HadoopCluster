@@ -32,7 +32,7 @@ cd HadoopCluster/
 docker build -t hadoop-spark .
 ```
 
-Vous pouvez maintenant déployer vos 3 conteneurs grace au fichier `docker-compose.yml`
+Vous pouvez maintenant déployer vos 3 conteneurs grace au fichier `docker-compose.yml`. Utilisez `docker-compose` si vous n'etes pas sur red hat.
 
 ```bash
 docker compose -f "docker-compose.yml" up -d --build
